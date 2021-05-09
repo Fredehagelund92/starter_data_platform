@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: "dbt_event_log"
+    columns:
+      - name: "event_id"
+      - name: "event_name"
+      - name: "event_timestamp"
+      - name: "event_schema"
+      - name: "event_model"
+      - name: "event_user"
+      - name: "event_target"
+      - name: "event_is_full_refresh"
+  - name: "dbt_result_log"
+    columns:
+      - name: "result_id"
+        description: "Invocation id for run"
+      - name: "status"
+        description: "error, success, skip etc."
+      - name: "started_at"
+        description: "start of the "
+      - name: "unique_id"
+      - name: "execution_time"
+      - name: "completed_at"
+      - name: "rows_affected"
+      - name: "run_started_at"
+      - name: "message"

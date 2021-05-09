@@ -1,0 +1,8 @@
+
+version: 2
+
+sources:
+  - name: calendar
+    tables:
+      - name: date
+      - name: time

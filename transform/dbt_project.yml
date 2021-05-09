@@ -1,0 +1,63 @@
+name: 'company'
+version: '1.0.0'
+config-version: 2
+
+profile: 'default'
+
+
+
+source-paths: ["models", "sources", "logging"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+data-paths: ["data"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+    - "target"
+    - "dbt_modules"
+
+
+on-run-start:
+    - "{{ log_run_start_event() }}"
+    - "{{ setup_logging() }}"
+
+on-run-end:
+    - "{{ create_roles(['reporter', 'analyst']) }}"
+    - "{{ grant_permissions(['dwh_mart'],['select'], 'test') }}"
+    - "{{ log_run_end_event() }}"
+    - "{{ log_results() }}"
+
+models:
+    pre-hook: "{{ log_model_start_event() }}"
+    post-hook: "{{ log_model_end_event() }}"
+    company:
+        # ------------------
+        # Sources
+        # ------------------
+
+
+        # ------------------
+        # Staging
+        # ------------------
+        staging:
+            +materialized: table
+            +schema: staging
+
+        # ------------------
+        # Mart
+        # ------------------
+        mart:
+            +materialized: table
+            +schema: mart
+
+        # ------------------
+        # Logging
+        # ------------------
+        logging:
+            +materialized: view
+            +schema: logging
+
+
+
