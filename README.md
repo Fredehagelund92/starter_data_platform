@@ -1,4 +1,8 @@
 # Starter Data Platform
+
+![flow](https://user-images.githubusercontent.com/5653787/119267491-28bd3b00-bbef-11eb-8b1d-91b8b294b83d.png)
+
+
 This repository provides a starting point for implementing a modern open source data platform. Data has become an essential part of organizations and their decision making process. The idea is to have a central repository with all the data, so analysts can provide meaningful analytics for the rest of the organization.
 
 This project will be used to explain and show how an data platform can be established with open-source industry standard products. The idea is to simplify the process of establishing a data platform, so we can make it more cost effective.
@@ -20,8 +24,9 @@ Need info or have feedback? Do not hesitate to  [create an issue](https://github
     - [Visualization](#visualization)
   - [Getting Started](#getting-started)
     - [Setup database](#setup-database)
-    - [Install Airbyte](#install-airbyte)
-    - [Install dbt](#install-dbt)
+    - [Setup Airbyte](#setup-airbyte)
+    - [Replicate a source](#replicate-a-source)
+    - [Clone project](#clone-project)
       - [Folder structure](#folder-structure)
     - [Install prefect](#install-prefect)
       - [Deploy dags](#deploy-dags)
@@ -73,7 +78,10 @@ The dbt framework also provide functionalities like:
 <br />
 
 ### Visualization
-[Redash](https://github.com/apache/airflow) is one of the two big big Open-source applications for visualization. The o
+[Redash](https://github.com/apache/airflow) is one of the two big Open-source applications for visualization. The other one is Metabase, which also have a large following. Whether you pick one or another depends on the organization and its competencies.
+
+
+Redash reports are build directly on top SQL queries and have a lot of different types of visualizations. Metabase is more point and click type of reporting, which makes it easier for self-service setup.
 
 <br />
 
@@ -88,18 +96,13 @@ Start by installing Materialize using [these instructions](https://materialize.c
 there are several ways to 
 
 
+### Setup Airbyte
 
 
+### Replicate a source
 
 
-### Install Airbyte
-
-
-
-
-
-
-### Install dbt
+### Clone project
 
 
 #### Folder structure
