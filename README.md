@@ -17,7 +17,7 @@
     <a href="https://github.com/Fredehagelund92/starter_data_platform/pulls"><img src="https://img.shields.io/github/issues-pr/Fredehagelund92/starter_data_platform" alt="Pull Requests Badge"/></a>
     <a href="https://github.com/Fredehagelund92/starter_data_platform/issues"><img src="https://img.shields.io/github/issues/Fredehagelund92/starter_data_platform" alt="Issues Badge"/></a>
     <a href="https://github.com/Fredehagelund92/starter_data_platform/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Fredehagelund92/starter_data_platform?color=2b9348"></a>
-    <a href="https://github.com/Fredehagelund92/starter_data_platform/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Fredehagelund92/starter_data_platform?color=2b9348" alt="License Badge"/></a>
+    <a href="https://github.com/Fredehagelund92/starter_data_platform/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Fredehagelund92/starter_data_platform?color=%232b9348" alt="License Badge"/></a>
     <br />
     <br />
 </div>
@@ -50,8 +50,8 @@ Need info or have feedback? Do not hesitate to  [create an issue](https://github
 - [Requirements](#requirements)
 - [Getting Started](#getting-started)
   - [Setup Materialize](#setup-materialize)
-  - [Setup dbt project](#setup-dbt-project)
   - [Setup Airbyte](#setup-airbyte)
+  - [Setup dbt project](#setup-dbt-project)
   - [Setup Prefect](#setup-prefect)
     - [Clone project](#clone-project)
       - [Folder structure](#folder-structure)
@@ -121,7 +121,7 @@ Redash reports are build directly on top SQL queries and have a lot of different
 The minimum requirement for servers are as follows:
 
 * Materialization server
-* Prefect server
+* Dagster server
 * Airbyte server
 
 The specific technical requirements heavily depends depends on various factors like data volume, number of analysts etc. If you want more details please check out the specific documentation of the applications.
@@ -133,8 +133,7 @@ For CI/CD i prefer a local [Github Actions](https://docs.github.com/en/actions/h
 # Getting Started
 
 ## Setup Materialize
-Start by installing Materialize using [these instructions](https://materialize.com/docs/install/).
-
+Start by installing Materialize on the first machine using [these instructions](https://materialize.com/docs/install/).
 
 <br />
 
@@ -152,12 +151,24 @@ Start by installing Materialize using [these instructions](https://materialize.c
     create database development;
     ```
 
+## Setup Airbyte
+Start by installing Airbyte on the first machine using [these instructions](https://docs.airbyte.io/quickstart/deploy-airbyte).
+
+<br />
+
+
+1. Login to your instance
+
+    ```
+    psql -U materialize -h localhost -p 6875 materialize
+    ```
+
 ## Setup dbt project
 
 
 
 
-## Setup Airbyte
+
 
 
 ## Setup Prefect
