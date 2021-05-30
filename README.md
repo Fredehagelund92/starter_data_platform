@@ -26,7 +26,8 @@
 
 # About
 
-![flow](https://user-images.githubusercontent.com/5653787/119267491-28bd3b00-bbef-11eb-8b1d-91b8b294b83d.png)
+![full](https://user-images.githubusercontent.com/5653787/120114190-43a72680-c17e-11eb-897c-6323db88e8e5.png)
+
 
 
 This repository provides a starting point for implementing a modern open source data platform. Data has become an essential part of organizations and their decision making process. Having an central repository with all the data, enables analysts to provide meaningful analytics for the rest of the organization.
@@ -115,7 +116,8 @@ Redash reports are build directly on top SQL queries and have a lot of different
 
 # Requirements
 
-![servers](https://user-images.githubusercontent.com/5653787/119343188-645f1000-bc96-11eb-8e2a-06aa2f642aa0.png)
+![servers](https://user-images.githubusercontent.com/5653787/120114202-502b7f00-c17e-11eb-943f-7fa15663bd60.png)
+
 
 
 The minimum requirement for servers are as follows:
