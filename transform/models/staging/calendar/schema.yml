@@ -3,7 +3,7 @@ version: 2
 
 models:
     - name: calendar_date
-      description: "A starter dbt model"
+      description: "A standard calendar table"
       columns:
           - name: date_day
             description: "The date"
@@ -11,10 +11,10 @@ models:
                 - unique
                 - not_null
     - name: calendar_time
-      description: "A starter dbt model"
+      description: "A standard time table"
       columns:
           - name: time_of_day
-            description: "The date"
+            description: "The time of the day"
             tests:
                 - unique
                 - not_null

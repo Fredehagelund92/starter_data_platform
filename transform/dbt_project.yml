@@ -42,7 +42,7 @@ models:
         # Staging
         # ------------------
         staging:
-            +materialized: table
+            +materialized: view
             +schema: staging
 
         # ------------------
@@ -51,11 +51,14 @@ models:
         mart:
             +materialized: table
             +schema: mart
+            intermediate:
+                +materialized: view
 
         # ------------------
         # Logging
         # ------------------
         logging:
+            enabled: false
             +materialized: view
             +schema: logging
 

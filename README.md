@@ -1,43 +1,71 @@
-# Starter Data Platform
+<!-- PROJECT LOGO -->
+<br />
+
+  <h1 align="center">Starter Data Platform</h1>
+
+
+
+  <p align="center">
+    An awesome project that will help taking the first step on your journey toward data-driven decisions.
+    <br />
+    <br />
+  </p>
+
+<div align="center">
+    <a  href="https://github.com/Fredehagelund92/starter_data_platform/stargazers"><img src="https://img.shields.io/github/stars/Fredehagelund92/starter_data_platform" alt="Stars Badge"/></a>
+    <a href="https://github.com/Fredehagelund92/starter_data_platform/network/members"><img src="https://img.shields.io/github/forks/Fredehagelund92/starter_data_platform" alt="Forks Badge"/></a>
+    <a href="https://github.com/Fredehagelund92/starter_data_platform/pulls"><img src="https://img.shields.io/github/issues-pr/Fredehagelund92/starter_data_platform" alt="Pull Requests Badge"/></a>
+    <a href="https://github.com/Fredehagelund92/starter_data_platform/issues"><img src="https://img.shields.io/github/issues/Fredehagelund92/starter_data_platform" alt="Issues Badge"/></a>
+    <a href="https://github.com/Fredehagelund92/starter_data_platform/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/Fredehagelund92/starter_data_platform?color=2b9348"></a>
+    <a href="https://github.com/Fredehagelund92/starter_data_platform/blob/master/LICENSE"><img src="https://img.shields.io/github/license/Fredehagelund92/starter_data_platform?color=2b9348" alt="License Badge"/></a>
+    <br />
+    <br />
+</div>
+
+
+
+# About
 
 ![flow](https://user-images.githubusercontent.com/5653787/119267491-28bd3b00-bbef-11eb-8b1d-91b8b294b83d.png)
 
 
-This repository provides a starting point for implementing a modern open source data platform. Data has become an essential part of organizations and their decision making process. The idea is to have a central repository with all the data, so analysts can provide meaningful analytics for the rest of the organization.
+This repository provides a starting point for implementing a modern open source data platform. Data has become an essential part of organizations and their decision making process. Having an central repository with all the data, enables analysts to provide meaningful analytics for the rest of the organization.
 
-This project will be used to explain and show how an data platform can be established with open-source industry standard products. The idea is to simplify the process of establishing a data platform, so we can make it more cost effective.
+This project will be used to explain and show how an data platform can be established with only open-source products.
 
 
 Need info or have feedback? Do not hesitate to  [create an issue](https://github.com/Fredehagelund92/starter_data_platform/issues/new)
 
------
+<br />
 
-
-## Table of contents
-- [Starter Data Platform](#starter-data-platform)
-  - [Table of contents](#table-of-contents)
-  - [Data Stack](#data-stack)
-    - [Storage](#storage)
-    - [Extract](#extract)
-    - [Transformation](#transformation)
-    - [Orchestration](#orchestration)
-    - [Visualization](#visualization)
-  - [Getting Started](#getting-started)
-    - [Setup database](#setup-database)
-    - [Setup Airbyte](#setup-airbyte)
-    - [Replicate a source](#replicate-a-source)
+# Table of contents
+- [About](#about)
+- [Table of contents](#table-of-contents)
+- [Components](#components)
+  - [Storage](#storage)
+  - [Extract](#extract)
+  - [Transformation](#transformation)
+  - [Orchestration](#orchestration)
+  - [Visualization](#visualization)
+- [Requirements](#requirements)
+- [Getting Started](#getting-started)
+  - [Setup Materialize](#setup-materialize)
+  - [Setup dbt project](#setup-dbt-project)
+  - [Setup Airbyte](#setup-airbyte)
+  - [Setup Prefect](#setup-prefect)
     - [Clone project](#clone-project)
       - [Folder structure](#folder-structure)
     - [Install prefect](#install-prefect)
       - [Deploy dags](#deploy-dags)
+  - [Development](#development)
 
 <br />
 
-## Data Stack
-___
-### Storage
+# Components
 
-### Extract
+## Storage
+
+## Extract
 [Airbyte](https://github.com/airbytehq/airbyte)  is a new open-source application that is creating the new standard for data integration. The CDK makes it easy to integrate your data from various datasources. There are other tools like Meltano, Kiba etc. however airbytes community is growing rapidly and its so easy to get started. The data integration is heavily influenced by singer.
 
 When starting a new data project i always start by integrating following data:
@@ -50,7 +78,7 @@ This enables me to quickly get started and generally it is not a problem, since 
 
 <br />
 
-### Transformation
+## Transformation
 [dbt](https://github.com/fishtown-analytics/dbt) introduces new standards to the data engineering and analyst space. For years people have been using GUI tools like Talend, SSIS, Pentaho, Alteryx etc. If you are familiar with one of these tools it can be rather quick to develop jobs. Personally i always end up banging my head against the wall due to following problems:
 
 * Components are not very flexible and workarounds are often needed.
@@ -72,12 +100,12 @@ The dbt framework also provide functionalities like:
 
 <br />
 
-### Orchestration
+## Orchestration
 [Prefect](https://github.com/PrefectHQ/prefect)
 
 <br />
 
-### Visualization
+## Visualization
 [Redash](https://github.com/apache/airflow) is one of the two big Open-source applications for visualization. The other one is Metabase, which also have a large following. Whether you pick one or another depends on the organization and its competencies.
 
 
@@ -85,21 +113,58 @@ Redash reports are build directly on top SQL queries and have a lot of different
 
 <br />
 
-## Getting Started
+# Requirements
 
-____
+![servers](https://user-images.githubusercontent.com/5653787/119343188-645f1000-bc96-11eb-8e2a-06aa2f642aa0.png)
 
-### Setup database
 
+The minimum requirement for servers are as follows:
+
+* Materialization server
+* Prefect server
+* Airbyte server
+
+The specific technical requirements heavily depends depends on various factors like data volume, number of analysts etc. If you want more details please check out the specific documentation of the applications.
+
+For CI/CD i prefer a local [Github Actions](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners) runner. For most cases it should be sufficient to install it on the Prefect server.
+
+<br />
+
+# Getting Started
+
+## Setup Materialize
 Start by installing Materialize using [these instructions](https://materialize.com/docs/install/).
 
-there are several ways to 
+
+<br />
+
+1. Login to your instance
+
+    ```
+    psql -U materialize -h localhost -p 6875 materialize
+    ```
+
+2. Create databases
+
+    ```
+    create database raw;
+    create database production;
+    create database development;
+    ```
+
+## Setup dbt project
 
 
-### Setup Airbyte
 
 
-### Replicate a source
+## Setup Airbyte
+
+
+## Setup Prefect
+
+
+
+
 
 
 ### Clone project
@@ -107,14 +172,13 @@ there are several ways to
 
 #### Folder structure
 
-
-
-
-
 ### Install prefect
 
 #### Deploy dags
 
+
+
+## Development
 
 
 

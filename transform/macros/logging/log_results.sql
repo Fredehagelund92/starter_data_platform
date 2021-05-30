@@ -19,7 +19,7 @@
 {% macro log_results() %}
 
 
-    {% do log(unpack_results(results) , info=true) %}
+    {# {% do log(unpack_results(results) , info=true) %} #}
 
     insert into {{ get_result_log_table() }} (
         result_id,

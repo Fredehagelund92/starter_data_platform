@@ -1,10 +1,10 @@
-with source as (
-    select * from
+WITH source AS (
+    SELECT * FROM
     {{ ref('calendar_time') }}
-), transformed as (
-    select
+), transformed AS (
+    SELECT
 
-        {{ dbt_utils.surrogate_key(['time_of_day']) }} as dim_time_id,
+        {{ dbt_utils.surrogate_key(['time_of_day']) }} AS dim_time_id,
         time_of_day,
         hour,
         minute,
@@ -19,8 +19,8 @@ with source as (
             model_updated_at="2021-01-01"
             )
         }}
-    from source
+    FROM source
 )
 
-select * from transformed
+SELECT * FROM transformed
 

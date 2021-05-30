@@ -1,10 +1,10 @@
-with source as (
-    select to_char(date_day, 'YYYYMMDD') date_day_char,t.* from
+WITH source AS (
+    SELECT TO_CHAR(date_day, 'YYYYMMDD') AS date_day_char,t.* FROM
     {{ ref('calendar_date') }} t
-), transformed as (
-    select
+), transformed AS (
+    SELECT
 
-        {{ dbt_utils.surrogate_key(['date_day_char']) }} as dim_date_id,
+        {{ dbt_utils.surrogate_key(['date_day_char']) }} AS dim_date_id,
         date_day,
         day_name,
         month_no,
@@ -34,7 +34,7 @@ with source as (
             model_updated_at="2021-01-01"
             )
         }}
-    from source
+    FROM source
 )
 
-select * from transformed
+SELECT * FROM transformed

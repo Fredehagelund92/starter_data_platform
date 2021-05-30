@@ -1,4 +1,4 @@
-{% macro get_meta_columns(model_name, meta_key=none, node_type='model', project='viteco') %}
+{% macro get_meta_columns(model_name, meta_key=none, node_type='model', project='company') %}
 
 	{% if execute %}
 

@@ -6,14 +6,17 @@ If you've noticed a bug, we recommend opening up an issue on your dbt repo. We u
 ## Steps to reproduce:
 List the steps that took you on your journey to discovering this bug! Include hyperlinks so we can go on the same journey.
 
+List the steps that are required to discover the bug that you are encountering. Feel free to include hyperlinks.
+
 Example:
 ```
 ## Steps to reproduce:
-* Go to [this Looker/Mode/Periscope report](www.link_to_report.com).
-* Also go to [this GA dashboard](www.link_to_ga.com).
+1. Go to [this HR dashboard](www.link_to_ga.com).
+2. Look at [this redash report](www.link_to_report.com).
+3. Check the number of employees.
 ```
 
-## Expected resuts:
+## Expected Result:
 Explain what you expected to see when you went on your journey of bug-discovery. If you have historical data (e.g. a screenshot of the same report from last week), here is a great place to include it!
 Example:
 ```
@@ -21,19 +24,20 @@ Example:
 * The pageview numbers for yesterday _should_ be somewhat similar.
 ```
 
-## Actual results
-Explain what you saw that made you go "that doesn't look right". Include screenshots!
+## Current Result
+Explain the problem and what makes you think that this could be a bug. Please include screenshots.
+
 ```
-## Actual resuts:
-* Looker is reporting 500 pageviews:
-[Screenshot of Looker]
-* GA is reporting 100 page views:
-[Screenshot of GA]
+## Current Result:
+* Redash is showing that we have 100 employees.
+[Screenshot of Redash]
+* In HR system we only have 50:
+[Screenshot of HR system]
 ```
 
-## Extra details
-Include any extra details that you think might be relevant. If you're someone that is close to the dbt code, you might know of a recent PR related to this area.
+## Possible Solution
+Tell us if you have any idea of why this might have happened.
+
 ```
-## Extra details
-PR #27 "Join page views to users" was merged just before we noticed these errors
+A migration of the HR system happened yesterday. This could be the reason for the inconsistency between the DWH and source.
 ```

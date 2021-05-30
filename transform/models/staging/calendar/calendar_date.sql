@@ -1,4 +1,3 @@
-
 WITH date_spine AS (
 
   {{ dbt_utils.date_spine(
@@ -8,47 +7,46 @@ WITH date_spine AS (
      )
   }}
 
-), holiday as (
-    select
-      date_day join_date_day,
-      CASE
-        WHEN EXTRACT(month from date_day) = 1 AND EXTRACT(day from date_day) = 1 THEN 'New Year''s Day'
-        WHEN EXTRACT(month from date_day) = 12 AND EXTRACT(day from date_day) = 25 THEN 'Christmas Day'
-        WHEN EXTRACT(month from date_day) = 12 AND EXTRACT(day from date_day) = 26 THEN 'Boxing Day'
-      ELSE NULL END                                                              AS holiday_desc
-    from date_spine
+), holiday AS (
+    SELECT
+      date_day AS join_date_day,
+      CASE WHEN EXTRACT(month FROM date_day) = 1 AND EXTRACT(day FROM date_day) = 1 THEN 'New Years Day'
+        WHEN EXTRACT(month FROM date_day) = 12 AND EXTRACT(day FROM date_day) = 25 THEN 'Christmas Day'
+        WHEN EXTRACT(month FROM date_day) = 12 AND EXTRACT(day FROM date_day) = 26 THEN 'Boxing Day'
+      ELSE NULL END AS holiday_desc
+    FROM date_spine
 
-), calculated as (
+), calculated AS (
   SELECT    date_day,
-            To_char(date_day, 'Day')       AS day_name,
-            Extract(month FROM date_day)   AS month_no,
-            Extract(year FROM date_day)    AS year_no,
-            Extract(quarter FROM date_day) AS quarter_no,
-            Extract(dow FROM date_day) + 1 AS day_no,
+            TO_CHAR(date_day, 'Day')       AS day_name,
+            EXTRACT(month FROM date_day)   AS month_no,
+            EXTRACT(year FROM date_day)    AS year_no,
+            EXTRACT(quarter FROM date_day) AS quarter_no,
+            EXTRACT(dow FROM date_day) + 1 AS day_no,
             CASE
-                      WHEN To_char(date_day, 'Day') = 'Sun' THEN date_day
-                      ELSE Date_trunc('week', date_day) - INTERVAL '1 day'
-            end                                                                                                                     AS first_day_of_week,
-            extract(week FROM date_day)                                                                                             AS week_of_year,
-            extract(day FROM date_day)                                                                                              AS day_of_month,
-            row_number() over (partition BY extract(year FROM date_day), extract(quarter FROM date_day) ORDER BY date_day)          AS day_of_quarter,
-            row_number() over (partition BY extract(year FROM date_day) ORDER BY date_day)                                          AS day_of_year,
-            to_char(date_day, 'MMMM')                                                                                               AS month_name,
-            date_trunc('MONTH',date_day)                                                                                            AS first_day_of_month,
-            last_value(date_day) over (partition BY extract(year FROM date_day), extract(month FROM date_day) ORDER BY date_day)    AS last_day_of_month,
-            first_value(date_day) over (partition BY extract(year FROM date_day) ORDER BY date_day)                                 AS first_day_of_year,
-            last_value(date_day) over (partition BY extract(year FROM date_day) ORDER BY date_day)                                  AS last_day_of_year,
-            first_value(date_day) over (partition BY extract(year FROM date_day), extract(quarter FROM date_day) ORDER BY date_day) AS first_day_of_quarter,
-            last_value(date_day) over (partition BY extract(year FROM date_day), extract(quarter FROM date_day) ORDER BY date_day)  AS last_day_of_quarter,
-            last_value(date_day) over (partition BY extract(week FROM date_day) ORDER BY date_day)                                  AS last_day_of_week,
-            (extract(year FROM date_day)
+                      WHEN TO_CHAR(date_day, 'Day') = 'Sun' THEN date_day
+                      ELSE DATE_TRUNC('week', date_day) - INTERVAL '1 day'
+            END                                                                                                                     AS first_day_of_week,
+            EXTRACT(week FROM date_day)                                                                                             AS week_of_year,
+            EXTRACT(day FROM date_day)                                                                                              AS day_of_month,
+            ROW_NUMBER() OVER (PARTITION BY EXTRACT(year FROM date_day), EXTRACT(quarter FROM date_day) ORDER BY date_day)          AS day_of_quarter,
+            ROW_NUMBER() OVER (PARTITION BY EXTRACT(year FROM date_day) ORDER BY date_day)                                          AS day_of_year,
+            TO_CHAR(date_day, 'MMMM')                                                                                               AS month_name,
+            DATE_TRUNC('MONTH',date_day)                                                                                            AS first_day_of_month,
+            LAST_VALUE(date_day) OVER (PARTITION BY EXTRACT(year FROM date_day), EXTRACT(month FROM date_day) ORDER BY date_day)    AS last_day_of_month,
+            FIRST_VALUE(date_day) OVER (PARTITION BY EXTRACT(year FROM date_day) ORDER BY date_day)                                 AS first_day_of_year,
+            LAST_VALUE(date_day) OVER (PARTITION BY EXTRACT(year FROM date_day) ORDER BY date_day)                                  AS last_day_of_year,
+            FIRST_VALUE(date_day) OVER (PARTITION BY EXTRACT(year FROM date_day), EXTRACT(quarter FROM date_day) ORDER BY date_day) AS first_day_of_quarter,
+            LAST_VALUE(date_day) OVER (PARTITION BY EXTRACT(year FROM date_day), EXTRACT(quarter FROM date_day) ORDER BY date_day)  AS last_day_of_quarter,
+            LAST_VALUE(date_day) OVER (PARTITION BY EXTRACT(week FROM date_day) ORDER BY date_day)                                  AS last_day_of_week,
+            (EXTRACT(year FROM date_day)
                       || '-Q'
-                      || extract(quarter FROM date_day)) AS quarter_name,
+                      || EXTRACT(quarter FROM date_day)) AS quarter_name,
             holiday.holiday_desc                         AS holiday_desc, (
             CASE
                       WHEN holiday.holiday_desc IS NULL THEN 0
                       ELSE 1
-            end) AS is_holiday
+            END) AS is_holiday
   FROM      date_spine
   LEFT JOIN holiday
   ON        holiday.join_date_day = date_spine.date_day

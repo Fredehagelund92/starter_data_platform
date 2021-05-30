@@ -1,4 +1,7 @@
 packages:
 
   - git: "https://github.com/fishtown-analytics/dbt-utils.git"
-    revision: 0.6.4
+    revision: 0.6.5
+
+  - git: "https://github.com/MaterializeInc/materialize-dbt-utils.git"
+    revision: "main"

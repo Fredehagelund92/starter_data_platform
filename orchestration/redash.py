@@ -1,4 +1,3 @@
-import click
 import requests
 
 template = u"""/*
@@ -37,13 +36,13 @@ def save_queries(queries):
             f.write(content.encode('utf-8'))
 
 
-@click.command()
-@click.option('--redash-url')
-@click.option('--api-key', help="API Key")
-def main(redash_url, api_key):
-    queries = get_queries(redash_url, api_key)
-    save_queries(queries)
+# @click.command()
+# @click.option('--redash-url')
+# @click.option('--api-key', help="API Key")
+# def main(redash_url, api_key):
+#     queries = get_queries(redash_url, api_key)
+#     save_queries(queries)
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()
